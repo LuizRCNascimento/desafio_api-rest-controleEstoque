@@ -1,0 +1,1 @@
+https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.5.0.RELEASE&packaging=jar&jvmVersion=11&groupId=starter&artifactId=api-rest&name=api-rest-ControleDeEstoque&description=Demo%20project%20for%20Spring%20Boot&packageName=starter.api-rest&dependencies=devtools,web,data-rest,hateoas,security,sqlserver,validation,mail,native
