@@ -29,6 +29,9 @@ public class Fornecedor {
 	
 	@Embedded
 	private Endereco endereco;
+	
+//	@PrimaryKeyJoinColumn(name = "id")
+//	private Compra compra;
 
 	//Constructors
 	public Fornecedor(@CNPJ String cnpj, @NotNull(message = "O nome do Fornecedor deve ser preenchido") String nome,

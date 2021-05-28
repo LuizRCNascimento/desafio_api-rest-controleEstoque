@@ -30,6 +30,10 @@ public class DadosLogin implements Serializable {
 		return this.password;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}

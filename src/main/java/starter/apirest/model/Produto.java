@@ -1,18 +1,21 @@
 package starter.apirest.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 	@NotNull(message = "Campo do produto deve ser preenchido")
 	private String nome;
 	@NotNull(message = "Campo descrição do produto deve ser preenchido")
@@ -21,11 +24,15 @@ public class Produto {
 	@Enumerated(EnumType.STRING)
 	private Unidade unidade;
 	
+	@OneToOne(mappedBy = "produto", cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private Estoque estoque;
+	
 	//Construtores
 	public Produto() {
 	}
 
-	public Produto(Long id, String nome, String descricao, Unidade unidade) {
+	public Produto(long id, String nome, String descricao, Unidade unidade) {
 		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
@@ -33,11 +40,11 @@ public class Produto {
 	}
 
 	//Getters and Setters
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
