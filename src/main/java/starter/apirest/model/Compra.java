@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Compra {
@@ -12,8 +13,8 @@ public class Compra {
 	private long idCompra;
 	private long quantidadeCompra;  
 	
-//	@OneToOne (mappedBy = "id")
-//	private Fornecedor fornecedor;
+	@OneToOne
+	private Fornecedor fornecedor;
 	
 //	@OneToMany(fetch = FetchType.EAGER,mappedBy = "id")
 //	@JoinColumn
@@ -27,9 +28,6 @@ public class Compra {
 	public Compra() {
 	}
 
-	
-
-	
 	//Getters & Setters
 	public long getIdCompra() {
 		return idCompra;
