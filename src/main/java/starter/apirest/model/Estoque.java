@@ -1,5 +1,6 @@
 package starter.apirest.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -17,6 +18,10 @@ public class Estoque {
 	@MapsId
 	@JoinColumn(name = "idProduto")
 	private Produto produto;
+	
+	@OneToOne(mappedBy = "estoque", cascade = CascadeType.ALL)
+//	@JoinColumn(name = "idProduto")
+	private Compra compra;
 	
 	public Estoque() {
 	}

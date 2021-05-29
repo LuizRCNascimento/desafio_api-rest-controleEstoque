@@ -4,21 +4,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
 public class Compra {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idCompra;
+	private long idRequisição;
+
+	@ManyToOne
+	private PedidoCompra pedidoCompra;
+	
 	private long quantidadeCompra;  
 	
-	@OneToOne
-	private Fornecedor fornecedor;
+	private long valorCompra;  
 	
-//	@OneToMany(fetch = FetchType.EAGER,mappedBy = "id")
-//	@JoinColumn
-//	private List<Produto> produtos;
+	@OneToOne
+	private Estoque estoque;
+	
+
+	
+//	@OneToMany (mappedBy = "compra")
+//	@JoinColumn(name = "idProduto")
+//	private List<Estoque> estoque;
 	
 //	@OneToOne(mappedBy = "idProduto")
 //	@JoinColumn
@@ -29,12 +38,16 @@ public class Compra {
 	}
 
 	//Getters & Setters
-	public long getIdCompra() {
-		return idCompra;
+
+
+
+
+	public long getValorCompra() {
+		return valorCompra;
 	}
 
-	public void setIdCompra(long idCompra) {
-		this.idCompra = idCompra;
+	public void setValorCompra(long valorCompra) {
+		this.valorCompra = valorCompra;
 	}
 
 	public long getQuantidadeCompra() {

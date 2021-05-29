@@ -33,7 +33,7 @@ public class Fornecedor {
 	private Endereco endereco;
 	
 	@OneToOne(mappedBy = "fornecedor",cascade = CascadeType.ALL)
-	private Compra compra;
+	private PedidoCompra pedidoCompra;
 
 	//Constructors
 	public Fornecedor(@CNPJ String cnpj, @NotNull(message = "O nome do Fornecedor deve ser preenchido") String nome,
