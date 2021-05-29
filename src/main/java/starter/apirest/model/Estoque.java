@@ -20,8 +20,10 @@ public class Estoque {
 	private Produto produto;
 	
 	@OneToOne(mappedBy = "estoque", cascade = CascadeType.ALL)
-//	@JoinColumn(name = "idProduto")
 	private Compra compra;
+	
+	@OneToOne(mappedBy = "estoque", cascade = CascadeType.ALL)
+	private Venda venda;
 	
 	public Estoque() {
 	}
