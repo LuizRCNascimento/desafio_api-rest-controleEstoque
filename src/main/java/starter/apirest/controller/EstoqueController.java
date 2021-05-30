@@ -27,31 +27,21 @@ public class EstoqueController {
 		return er.findAll();
 	}
 	
-//	@PostMapping
-//	public ResponseEntity<Estoque> salvarEstoque(@Valid @RequestBody Estoque estoque){
-//		er.save(estoque);
-//		return ResponseEntity.ok(estoque);
-//	}
-	
 	@GetMapping("/{id}")
 	public ResponseEntity<Estoque> pesquisaPorId(@PathVariable long id) {
 		Estoque estoque = er.findById(id);
 		return estoque !=null ? ResponseEntity.ok(estoque) : ResponseEntity.notFound().build();
 	}
-//	@DeleteMapping("/{id}")
-//	public void delete(@PathVariable long id) {
-//		er.deleteById(id);
-//	}	
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> atualizarEstoque(@PathVariable(value = "id") long id, @RequestBody Estoque estoque) {
 		System.out.println("Entrou no UpdatedEstoque: ");
 		Estoque updatedEstoque = er.findById(id);
 		System.out.println("UpdatedEstoque: "+updatedEstoque);
-		BeanUtils.copyProperties(estoque,updatedEstoque,"id");
+		System.out.println("estoque: "+estoque);
+		BeanUtils.copyProperties(estoque,updatedEstoque,"idProduto");
 		er.save(updatedEstoque);
 		return ResponseEntity.ok(updatedEstoque);
 	}
-	
 	
 }
