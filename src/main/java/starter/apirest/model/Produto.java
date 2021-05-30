@@ -1,6 +1,5 @@
 package starter.apirest.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -24,7 +23,8 @@ public class Produto {
 	@Enumerated(EnumType.STRING)
 	private Unidade unidade;
 	
-	@OneToOne(mappedBy = "produto", cascade = CascadeType.ALL)
+//	@OneToOne(mappedBy = "produto", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "produto")
 	@PrimaryKeyJoinColumn
 	private Estoque estoque;
 	

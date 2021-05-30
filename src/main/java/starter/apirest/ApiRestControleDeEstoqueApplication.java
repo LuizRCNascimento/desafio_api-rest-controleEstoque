@@ -1,5 +1,7 @@
 package starter.apirest;
 
+import java.util.Locale;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,7 +11,9 @@ public class ApiRestControleDeEstoqueApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiRestControleDeEstoqueApplication.class, args);
-		System.out.println("### Welcome ###");
+		
+		Locale defaultLocale = Locale.getDefault();
+		System.out.println("Default Locale: "+defaultLocale);
 	}
 
 }
