@@ -1,6 +1,5 @@
 package starter.apirest.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -19,11 +18,12 @@ public class Estoque {
 	@JoinColumn(name = "idProduto")
 	private Produto produto;
 	
-	@OneToOne(mappedBy = "estoque", cascade = CascadeType.ALL)
-	private Compra compra;
 	
-	@OneToOne(mappedBy = "estoque", cascade = CascadeType.ALL)
-	private Venda venda;
+//	@OneToOne(mappedBy = "estoque", cascade = CascadeType.ALL)
+//	private Compra compra;
+	
+//	@OneToOne(mappedBy = "estoque", cascade = CascadeType.ALL)
+//	private Venda venda;
 	
 	public Estoque() {
 	}
@@ -67,21 +67,21 @@ public class Estoque {
 		this.produto = produto;
 	}
 	
-	public Compra getCompra() {
-		return compra;
-	}
-	
-	public void setCompra(Compra compra) {
-		this.compra = compra;
-	}
-	
-	public Venda getVenda() {
-		return venda;
-	}
-	
-	public void setVenda(Venda venda) {
-		this.venda = venda;
-	}
+//	public Compra getCompra() {
+//		return compra;
+//	}
+//	
+//	public void setCompra(Compra compra) {
+//		this.compra = compra;
+//	}
+//	
+//	public Venda getVenda() {
+//		return venda;
+//	}
+//	
+//	public void setVenda(Venda venda) {
+//		this.venda = venda;
+//	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -113,7 +113,6 @@ public class Estoque {
 	@Override
 	public String toString() {
 		return "Estoque [idProduto=" + idProduto + ", quantidadeEstoque=" + quantidadeEstoque + ", valorVenda="
-				+ valorVenda + ", produto=" + produto + "]";
+				+ valorVenda +"]";
 	}
-	
 }
