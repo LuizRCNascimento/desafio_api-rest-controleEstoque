@@ -35,10 +35,7 @@ public class EstoqueController {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> atualizarEstoque(@PathVariable(value = "id") long id, @RequestBody Estoque estoque) {
-		System.out.println("Entrou no UpdatedEstoque: ");
 		Estoque updatedEstoque = er.findById(id);
-		System.out.println("UpdatedEstoque: "+updatedEstoque);
-		System.out.println("estoque: "+estoque);
 		BeanUtils.copyProperties(estoque,updatedEstoque,"idProduto");
 		er.save(updatedEstoque);
 		return ResponseEntity.ok(updatedEstoque);

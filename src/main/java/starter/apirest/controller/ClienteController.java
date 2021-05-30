@@ -39,16 +39,17 @@ public class ClienteController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Cliente> pesquisaPorId(@PathVariable long id) {
-		Cliente cliente = cr.getById(id);
+		Cliente cliente = cr.findById(id);
 		return cliente !=null ? ResponseEntity.ok(cliente) : ResponseEntity.notFound().build();
 	}
+	
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable long id) {
 		cr.deleteById(id);
 	}	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<?> atualizarCliente(@PathVariable(value = "id") long id, @RequestBody Cliente cliente) {
+	public ResponseEntity<?> atualizarCliente(@Valid @PathVariable(value = "id") long id, @RequestBody Cliente cliente) {
 		Cliente updatedCliente = cr.findById(id);
 		BeanUtils.copyProperties(cliente,updatedCliente,"id");
 		cr.save(updatedCliente);

@@ -32,14 +32,14 @@ public class FornecedorController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Fornecedor> salvarCliente(@Valid @RequestBody Fornecedor fornecedor){
+	public ResponseEntity<Fornecedor> salvarFornecedor(@Valid @RequestBody Fornecedor fornecedor){
 		fr.save(fornecedor);
 		return ResponseEntity.ok(fornecedor);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Fornecedor> pesquisaPorId(@PathVariable long id) {
-		Fornecedor fornecedor = fr.getById(id);
+		Fornecedor fornecedor = fr.findById(id);
 		return fornecedor !=null ? ResponseEntity.ok(fornecedor) : ResponseEntity.notFound().build();
 	}
 	@DeleteMapping("/{id}")
@@ -49,12 +49,10 @@ public class FornecedorController {
 	}	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<?> atualizarFornecedor(@PathVariable(value = "id") long id, @RequestBody Fornecedor fornecedor) {
+	public ResponseEntity<Fornecedor> atualizarFornecedor(@Valid @PathVariable(value = "id") long id, @RequestBody Fornecedor fornecedor) {
 		Fornecedor updatedFornecedor = fr.findById(id);
 		BeanUtils.copyProperties(fornecedor,updatedFornecedor,"id");
 		fr.save(updatedFornecedor);
 		return ResponseEntity.ok(updatedFornecedor);
 	}
-	
-	
 }
