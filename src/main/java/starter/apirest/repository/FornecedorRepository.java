@@ -7,4 +7,6 @@ import starter.apirest.model.Fornecedor;
 public interface FornecedorRepository extends JpaRepository<Fornecedor, Long>{
 
 	Fornecedor findById(long id);
+
+	
 }

@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import starter.apirest.security.model.DAOUser;
+
 @Entity
 public class PedidoCompra {
 	@Id
@@ -18,6 +20,9 @@ public class PedidoCompra {
 	@OneToOne
 	private Fornecedor fornecedor;
 	
+	@OneToOne
+	private DAOUser daoUser;  
+	
 	@OneToMany (mappedBy = "pedidoCompra")
 	private List<Compra> compra;
 	
@@ -25,10 +30,14 @@ public class PedidoCompra {
 	public PedidoCompra() {
 	}
 
-	public PedidoCompra(long idFornecedor, long id) {
+	public PedidoCompra(Fornecedor fornecedor, DAOUser daoUser, List<Compra> compra) {
 		super();
-		this.id = id;
+		this.fornecedor = fornecedor;
+		this.daoUser = daoUser;
+		this.compra = compra;
 	}
+
+
 
 	//Getters and Setters
 	public long getId() {

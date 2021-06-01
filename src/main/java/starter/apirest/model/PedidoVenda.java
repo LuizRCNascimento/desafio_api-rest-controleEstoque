@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import starter.apirest.security.model.DAOUser;
+
 @Entity
 public class PedidoVenda {
 	@Id
@@ -17,6 +19,9 @@ public class PedidoVenda {
 
 	@OneToOne
 	private Cliente cliente;
+	
+	@OneToOne
+	private DAOUser daoUser;
 	
 	@OneToMany (mappedBy = "pedidoVenda")
 	private List<Venda> venda;

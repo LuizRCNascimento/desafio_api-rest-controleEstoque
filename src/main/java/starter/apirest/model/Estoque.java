@@ -28,12 +28,15 @@ public class Estoque {
 	public Estoque() {
 	}
 
-	public Estoque(long idProduto, long quantidadeEstoque, long valorVenda) {
-		super();
-		this.idProduto = idProduto;
-		this.quantidadeEstoque = quantidadeEstoque;
-		this.valorVenda = valorVenda;
-	}
+	public Estoque(long idProduto, long quantidadeEstoque, long valorVenda, Produto produto) {
+	super();
+	this.idProduto = idProduto;
+	this.quantidadeEstoque = quantidadeEstoque;
+	this.valorVenda = valorVenda;
+	this.produto = produto;
+}
+
+
 
 	public long getIdProduto() {
 		return idProduto;
@@ -47,9 +50,9 @@ public class Estoque {
 		return quantidadeEstoque;
 	}
 
-	public void setQuantidadeEstoque(long quantidadeEstoque) {
-		this.quantidadeEstoque = quantidadeEstoque;
-	}
+//	public void setQuantidadeEstoque(long quantidadeEstoque) {
+//		this.quantidadeEstoque = quantidadeEstoque;
+//	}
 
 	public long getValorVenda() {
 		return valorVenda;
@@ -63,9 +66,9 @@ public class Estoque {
 		return produto;
 	}
 	
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
+//	public void setProduto(Produto produto) {
+//		this.produto = produto;
+//	}
 	
 //	public Compra getCompra() {
 //		return compra;
@@ -113,6 +116,6 @@ public class Estoque {
 	@Override
 	public String toString() {
 		return "Estoque [idProduto=" + idProduto + ", quantidadeEstoque=" + quantidadeEstoque + ", valorVenda="
-				+ valorVenda +"]";
+				+ valorVenda + "]";
 	}
 }
