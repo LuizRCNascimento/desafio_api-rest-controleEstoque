@@ -12,4 +12,5 @@ public interface CompraRepository extends JpaRepository<Compra, Long> {
 	
 	List<Compra> findByPedidoCompraIdOrderByIdRequisicaoAsc (long pedidoCompraId); //Lista de itens do pedido de Compra em ordem crescente
 	
+	List<Compra> findByPedidoCompraIdAndAtivoTrue (long pedidoCompraId); //Lista de itens do pedido de Compra em ordem crescente
 }

@@ -1,13 +1,19 @@
 package starter.apirest.model;
 
+import java.time.Instant;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 
 import starter.apirest.security.model.DAOUser;
 
@@ -20,14 +26,22 @@ public class PedidoCompra {
 	@OneToOne
 	private Fornecedor fornecedor;
 	
+	@CreatedBy
 	@OneToOne
 	private DAOUser daoUser;  
 	
 	@OneToMany (mappedBy = "pedidoCompra")
 	private List<Compra> compra;
 	
+    @Enumerated(EnumType.STRING)
+	private Status status;
+    
+    @CreatedDate
+    private Instant createdDate;
+	
 	//Constructor
 	public PedidoCompra() {
+		this.setStatus(Status.Aberto);
 	}
 
 	public PedidoCompra(Fornecedor fornecedor, DAOUser daoUser, List<Compra> compra) {
@@ -35,9 +49,8 @@ public class PedidoCompra {
 		this.fornecedor = fornecedor;
 		this.daoUser = daoUser;
 		this.compra = compra;
+		this.setStatus(Status.Aberto);
 	}
-
-
 
 	//Getters and Setters
 	public long getId() {
@@ -62,6 +75,14 @@ public class PedidoCompra {
 
 	public void setCompra(List<Compra> compra) {
 		this.compra = compra;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 	@Override
@@ -102,7 +123,5 @@ public class PedidoCompra {
 	public String toString() {
 		return "PedidoCompra [id=" + id + ", fornecedor=" + fornecedor + ", compra=" + compra + "]";
 	}
-	
-
 	
 }

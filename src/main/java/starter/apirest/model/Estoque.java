@@ -42,17 +42,17 @@ public class Estoque {
 		return idProduto;
 	}
 
-	public void setIdProduto(long idProduto) {
-		this.idProduto = idProduto;
-	}
+//	public void setIdProduto(long idProduto) {
+//		this.idProduto = idProduto;
+//	}
 
 	public long getQuantidadeEstoque() {
 		return quantidadeEstoque;
 	}
 
-//	public void setQuantidadeEstoque(long quantidadeEstoque) {
-//		this.quantidadeEstoque = quantidadeEstoque;
-//	}
+	public void setQuantidadeEstoque(long quantidadeEstoque) {
+		this.quantidadeEstoque = quantidadeEstoque;
+	}
 
 	public long getValorVenda() {
 		return valorVenda;

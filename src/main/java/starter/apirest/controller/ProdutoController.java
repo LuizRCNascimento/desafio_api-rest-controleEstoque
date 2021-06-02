@@ -30,7 +30,7 @@ public class ProdutoController {
 	
 	@GetMapping("/nome/{nome}")
 	public Produto buscarNome(@PathVariable ("nome") String nome) {
-		return pr.findByNome(nome);
+		return pr.findByNomeStartingWithIgnoreCase(nome);
 	}	
 	
 }

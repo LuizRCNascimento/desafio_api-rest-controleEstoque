@@ -23,6 +23,11 @@ public class Venda {
 	@OneToOne
 	private Estoque estoque;
 
+	
+	public Venda() {
+		super();
+	}
+
 	public Venda(long idRequisição, PedidoVenda pedidoVenda, long quantidadeCompra, long valorCompra, Estoque estoque) {
 		super();
 		this.idRequisição = idRequisição;

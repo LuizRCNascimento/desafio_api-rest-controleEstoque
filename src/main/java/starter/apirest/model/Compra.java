@@ -24,6 +24,8 @@ public class Compra {
 	@OneToOne
 	private Estoque estoque;
 	
+	private boolean ativo;
+	
 //	@OneToMany (mappedBy = "compra")
 //	@JoinColumn(name = "idProduto")
 //	private List<Estoque> estoque;
@@ -34,8 +36,20 @@ public class Compra {
 
 	//Constructors
 	public Compra() {
+		this.setAtivo(true);
 	}
 	
+	public Compra(long idRequisicao, PedidoCompra pedidoCompra, long quantidadeCompra, long valorCompra, Estoque estoque) {
+	super();
+	this.idRequisicao = idRequisicao;
+	this.pedidoCompra = pedidoCompra;
+	this.quantidadeCompra = quantidadeCompra;
+	this.valorCompra = valorCompra;
+	this.estoque = estoque;
+	this.setAtivo(true);
+}
+
+
 	public long getIdRequisicao() {
 		return idRequisicao;
 	}
@@ -74,6 +88,14 @@ public class Compra {
 
 	public void setEstoque(Estoque estoque) {
 		this.estoque = estoque;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override
@@ -119,7 +141,7 @@ public class Compra {
 	@Override
 	public String toString() {
 		return "Compra [idRequisicao=" + idRequisicao + ", quantidadeCompra="
-				+ quantidadeCompra + ", valorCompra=" + valorCompra + "]";
+				+ quantidadeCompra + ", valorCompra=" + valorCompra + ", Ativo = "+ativo+ "]";
 	}
 	
 }

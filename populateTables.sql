@@ -39,15 +39,15 @@ INSERT INTO `loja_locc`.`estoque` (`quantidade_estoque`, `valor_venda`, `id_prod
 INSERT INTO `loja_locc`.`estoque` (`quantidade_estoque`, `valor_venda`, `id_produto`) VALUES ('240', '1400', '4');
 
 
-INSERT INTO `loja_locc`.`pedido_compra` (`id`, `dao_user_id`, `fornecedor_id`) VALUES ('1', '1', '1');
-INSERT INTO `loja_locc`.`pedido_compra` (`id`, `dao_user_id`, `fornecedor_id`) VALUES ('2', '1', '2');
-INSERT INTO `loja_locc`.`pedido_compra` (`id`, `dao_user_id`, `fornecedor_id`) VALUES ('3', '1', '1');
+INSERT INTO `loja_locc`.`pedido_compra` (`id`, `dao_user_id`, `fornecedor_id`, `status`) VALUES ('1', '1', '1', 'Aberto');
+INSERT INTO `loja_locc`.`pedido_compra` (`id`, `dao_user_id`, `fornecedor_id`, `status`) VALUES ('2', '1', '2', 'Aberto');
+INSERT INTO `loja_locc`.`pedido_compra` (`id`, `dao_user_id`, `fornecedor_id`, `status`) VALUES ('3', '1', '1', 'Aberto');
 
-INSERT INTO `loja_locc`.`compra` (`id_requisicao`, `quantidade_compra`, `valor_compra`, `estoque_id_produto`, `pedido_compra_id`) VALUES ('1', '11', '100', '1', '1');
-INSERT INTO `loja_locc`.`compra` (`id_requisicao`, `quantidade_compra`, `valor_compra`, `estoque_id_produto`, `pedido_compra_id`) VALUES ('2', '12', '200', '2', '1');
-INSERT INTO `loja_locc`.`compra` (`id_requisicao`, `quantidade_compra`, `valor_compra`, `estoque_id_produto`, `pedido_compra_id`) VALUES ('3', '13', '300', '3', '1');
-INSERT INTO `loja_locc`.`compra` (`id_requisicao`, `quantidade_compra`, `valor_compra`, `estoque_id_produto`, `pedido_compra_id`) VALUES ('4', '14', '400', '4', '1');
-INSERT INTO `loja_locc`.`compra` (`id_requisicao`, `quantidade_compra`, `valor_compra`, `estoque_id_produto`, `pedido_compra_id`) VALUES ('5', '21', '210', '1', '2');
-INSERT INTO `loja_locc`.`compra` (`id_requisicao`, `quantidade_compra`, `valor_compra`, `estoque_id_produto`, `pedido_compra_id`) VALUES ('6', '23', '230', '3', '2');
-INSERT INTO `loja_locc`.`compra` (`id_requisicao`, `quantidade_compra`, `valor_compra`, `estoque_id_produto`, `pedido_compra_id`) VALUES ('7', '32', '320', '2', '3');
-INSERT INTO `loja_locc`.`compra` (`id_requisicao`, `quantidade_compra`, `valor_compra`, `estoque_id_produto`, `pedido_compra_id`) VALUES ('8', '33', '330', '3', '3');
+INSERT INTO `loja_locc`.`compra` (`id_requisicao`, `quantidade_compra`, `valor_compra`, `estoque_id_produto`, `pedido_compra_id`, `ativo`) VALUES ('1', '11', '100', '1', '1', 1);
+INSERT INTO `loja_locc`.`compra` (`id_requisicao`, `quantidade_compra`, `valor_compra`, `estoque_id_produto`, `pedido_compra_id`, `ativo`) VALUES ('2', '12', '200', '2', '1', 1);
+INSERT INTO `loja_locc`.`compra` (`id_requisicao`, `quantidade_compra`, `valor_compra`, `estoque_id_produto`, `pedido_compra_id`, `ativo`) VALUES ('3', '13', '300', '3', '1', 0);
+INSERT INTO `loja_locc`.`compra` (`id_requisicao`, `quantidade_compra`, `valor_compra`, `estoque_id_produto`, `pedido_compra_id`, `ativo`) VALUES ('4', '14', '400', '4', '3', 1);
+INSERT INTO `loja_locc`.`compra` (`id_requisicao`, `quantidade_compra`, `valor_compra`, `estoque_id_produto`, `pedido_compra_id`, `ativo`) VALUES ('5', '21', '210', '1', '3', 1);
+INSERT INTO `loja_locc`.`compra` (`id_requisicao`, `quantidade_compra`, `valor_compra`, `estoque_id_produto`, `pedido_compra_id`, `ativo`) VALUES ('6', '2300', '230', '3', '2', 1);
+INSERT INTO `loja_locc`.`compra` (`id_requisicao`, `quantidade_compra`, `valor_compra`, `estoque_id_produto`, `pedido_compra_id`, `ativo`) VALUES ('7', '32000', '320', '2', '3', 0);
+INSERT INTO `loja_locc`.`compra` (`id_requisicao`, `quantidade_compra`, `valor_compra`, `estoque_id_produto`, `pedido_compra_id`, `ativo`) VALUES ('8', '33', '330', '3', '3', 1);

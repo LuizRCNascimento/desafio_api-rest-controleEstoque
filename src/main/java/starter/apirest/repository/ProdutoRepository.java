@@ -14,5 +14,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 	
 	List<Produto> findByOrderByNomeDesc();	//Lista de produtos em ordem decrescente de nome
 
-	Produto findByNome(String nome);	//Busca de produto por nome
+	Produto findByNomeStartingWithIgnoreCase(String nome);	//Busca de produto por nome
+
+	Produto findByNomeLikeIgnoreCase(String nome);	//Busca de produto por nome
 }
