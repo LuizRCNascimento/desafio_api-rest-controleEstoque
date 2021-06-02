@@ -16,24 +16,26 @@ public class Venda {
 	@ManyToOne
 	private PedidoVenda pedidoVenda;
 	
-	private long quantidadeCompra;  
+	private long quantidadeVenda;  
 	
-	private long valorCompra;  
+	private long valorVenda;  
 	
 	@OneToOne
 	private Estoque estoque;
 
-	
+	private boolean ativo;
+
 	public Venda() {
-		super();
+		this.setAtivo(true);
 	}
 
-	public Venda(long idRequisição, PedidoVenda pedidoVenda, long quantidadeCompra, long valorCompra, Estoque estoque) {
+	public Venda(long idRequisição, PedidoVenda pedidoVenda, long quantidadeVenda, long valorVenda, Estoque estoque) {
 		super();
+		this.setAtivo(true);
 		this.idRequisição = idRequisição;
 		this.pedidoVenda = pedidoVenda;
-		this.quantidadeCompra = quantidadeCompra;
-		this.valorCompra = valorCompra;
+		this.quantidadeVenda = quantidadeVenda;
+		this.valorVenda = valorVenda;
 		this.estoque = estoque;
 	}
 
@@ -53,20 +55,20 @@ public class Venda {
 		this.pedidoVenda = pedidoVenda;
 	}
 
-	public long getQuantidadeCompra() {
-		return quantidadeCompra;
+	public long getQuantidadeVenda() {
+		return quantidadeVenda;
 	}
 
-	public void setQuantidadeCompra(long quantidadeCompra) {
-		this.quantidadeCompra = quantidadeCompra;
+	public void setQuantidadeVenda(long quantidadeVenda) {
+		this.quantidadeVenda = quantidadeVenda;
 	}
 
-	public long getValorCompra() {
-		return valorCompra;
+	public long getValorVenda() {
+		return valorVenda;
 	}
 
-	public void setValorCompra(long valorCompra) {
-		this.valorCompra = valorCompra;
+	public void setValorVenda(long valorVenda) {
+		this.valorVenda = valorVenda;
 	}
 
 	public Estoque getEstoque() {
@@ -76,8 +78,13 @@ public class Venda {
 	public void setEstoque(Estoque estoque) {
 		this.estoque = estoque;
 	}
-	
-	
 
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
 
 }
