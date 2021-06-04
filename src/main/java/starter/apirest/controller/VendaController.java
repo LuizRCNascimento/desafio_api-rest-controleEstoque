@@ -34,6 +34,9 @@ public class VendaController {
 	@Autowired
 	private AjusteInventarioService inventario;
 	
+//    @Autowired
+//    private MailService mailService;
+	
 	@Autowired
 	private PedidoVendaRepository pvr;
 
@@ -83,6 +86,8 @@ public class VendaController {
 	}
 	
 	//Aprovação de pedido de Venda e ajuste de inventario, caso necessario
+	
+	
 	@PutMapping ("/{id}")
 	public ResponseEntity<?> aprovarPedidoVenda (@PathVariable long id, @RequestBody PedidoVenda pedidoBody) {
 		PedidoVenda pedido = pvr.findByIdAndStatus(id,Status.Aberto); //buscar apenas os pedidos abertos
@@ -97,8 +102,8 @@ public class VendaController {
 		}
 		else if (pedidoBody.getStatus().toString() == "Aprovado") {
 			inventario.ajustarInventarioVenda(id);
-
-				return ResponseEntity.status(HttpStatus.ACCEPTED).body("Pedido "+pedidoBody.getStatus()+" com Sucesso! ");
+			//mailService.enviar();
+			return ResponseEntity.status(HttpStatus.ACCEPTED).body("Pedido "+pedidoBody.getStatus()+" com Sucesso! ");
 		}
 		//Pedido que necessita de revisão de volumes
 		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("Quantidade de material em estoque já não se encontra mais disponível para venda.");

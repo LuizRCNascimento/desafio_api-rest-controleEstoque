@@ -27,7 +27,6 @@ public class Venda {
 
 	public Venda() {
 		this.setAtivo(true);
-		System.out.println("Passou pela Venda - construtor geral");
 	}
 
 	public Venda(long idRequisicao, PedidoVenda pedidoVenda, long quantidadeVenda, long valorVenda, Estoque estoque) {
