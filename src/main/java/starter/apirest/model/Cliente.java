@@ -5,12 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.br.CPF;
+
+import starter.apirest.security.model.DAOUser;
 
 @Entity
 public class Cliente {
@@ -27,10 +30,17 @@ public class Cliente {
 	@Email
 	private String email;
 	
+	@OneToOne
+	private DAOUser usuario; //Regra de negocio: Usuario logado que efetuara o cadastro do cliente será o responsável pela emissao dos pedidos
+	
 	@Embedded
 	private Endereco endereco;
-
+	
 	//Constructors
+	public Cliente() {
+		super();
+	}
+
 	public Cliente(@Valid String cpf, String nome,
 			String telefone, String email, Endereco endereco) {
 		super();
@@ -41,9 +51,6 @@ public class Cliente {
 		this.endereco = endereco;
 	}
 
-	public Cliente() {
-		super();
-	}
 	//Getters and Setters
 
 	public long getId() {
@@ -92,9 +99,12 @@ public class Cliente {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}	
+
+	public void setUsuario(DAOUser usuario) {
+		this.usuario = usuario;
 	}
 
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

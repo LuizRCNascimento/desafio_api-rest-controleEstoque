@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,10 @@ import starter.apirest.model.Compra;
 import starter.apirest.model.PedidoCompra;
 import starter.apirest.model.Status;
 import starter.apirest.repository.CompraRepository;
+import starter.apirest.repository.FornecedorRepository;
 import starter.apirest.repository.PedidoCompraRepository;
+import starter.apirest.security.config.JwtTokenUtil;
+import starter.apirest.security.dao.UserDao;
 import starter.apirest.service.AjusteInventarioService;
 
 @RestController
@@ -33,11 +37,32 @@ public class CompraController {
 	private PedidoCompraRepository pr;
 	
 	@Autowired
+	private FornecedorRepository fr;
+
+	@Autowired
 	private CompraRepository cr;
 	
-	@GetMapping("/{id}")
+	@Autowired
+	private JwtTokenUtil jwtTokenUtil;
+	
+	@Autowired
+	private UserDao ur;
+	
+	//Lista de pedidos por código de usuário
+	@GetMapping("/user/{id}")
 	public List<PedidoCompra> listar(@PathVariable long id) {
 		return pr.findAllByDaoUserId(id);
+	}
+	
+	//Criacao de pedido de Compra
+	@PostMapping  
+	public ResponseEntity<PedidoCompra> criarPedidoCompra (@Valid @RequestBody PedidoCompra pedido, @RequestHeader("Authorization") String requestTokenHeader) {
+		String jwtToken = requestTokenHeader.substring(7);
+		String usuario =jwtTokenUtil.getUsernameFromToken(jwtToken);
+		pedido.setDaoUser(ur.findByUsername(usuario));
+		pedido.setFornecedor(fr.findById(pedido.getFornecedor().getId()));
+		pr.save(pedido);
+		return ResponseEntity.ok(pedido);
 	}
 	
 	//Busca requisiçoes por numero de pedido 
@@ -48,6 +73,12 @@ public class CompraController {
 			System.out.println("pedido inexistente");
 			return ResponseEntity.notFound().build();
 		}
+		//Bloqueia a alteração de requisicoes de compra sem que o pedido esteja aberto.
+		if (pedido.getStatus().toString()!="Aberto") {
+			System.out.println("Pedido finalizado. Revisão não permitida");
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+		}
+		compra.setPedidoCompra(pr.findById(id));
 		cr.save(compra);
 		return ResponseEntity.ok(compra);
 	}
@@ -61,8 +92,10 @@ public class CompraController {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 		if (pedidoBody.getStatus().toString() == "Aprovado") {
-			inventario.ajustarInventario(id);
+			inventario.ajustarInventarioCompra(id);
 		}
+		pedido.setStatus(pedidoBody.getStatus());
+		pr.save(pedido);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Pedido "+pedidoBody.getStatus()+" com Sucesso!");
 	}
 	

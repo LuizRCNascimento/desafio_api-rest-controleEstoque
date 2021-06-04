@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 public class Venda {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idRequisição;
+	private long idRequisicao;
 
 	@ManyToOne
 	private PedidoVenda pedidoVenda;
@@ -27,32 +27,37 @@ public class Venda {
 
 	public Venda() {
 		this.setAtivo(true);
+		System.out.println("Passou pela Venda - construtor geral");
 	}
 
-	public Venda(long idRequisição, PedidoVenda pedidoVenda, long quantidadeVenda, long valorVenda, Estoque estoque) {
+	public Venda(long idRequisicao, PedidoVenda pedidoVenda, long quantidadeVenda, long valorVenda, Estoque estoque) {
 		super();
 		this.setAtivo(true);
-		this.idRequisição = idRequisição;
+		this.idRequisicao = idRequisicao;
 		this.pedidoVenda = pedidoVenda;
 		this.quantidadeVenda = quantidadeVenda;
 		this.valorVenda = valorVenda;
 		this.estoque = estoque;
+		System.out.println("Passou pela Venda - construtor field");
+
 	}
 
-	public long getIdRequisição() {
-		return idRequisição;
+	public long getIdRequisicao() {
+		return idRequisicao;
 	}
 
-	public void setIdRequisição(long idRequisição) {
-		this.idRequisição = idRequisição;
+	public void setIdRequisicao(long idRequisicao) {
+		this.idRequisicao = idRequisicao;
 	}
 
 	public PedidoVenda getPedidoVenda() {
+		System.out.println("Passou pelo Venda - getPedidoVenda");
 		return pedidoVenda;
 	}
 
 	public void setPedidoVenda(PedidoVenda pedidoVenda) {
 		this.pedidoVenda = pedidoVenda;
+		System.out.println("Passou pelo Venda - setPedidoVenda");
 	}
 
 	public long getQuantidadeVenda() {

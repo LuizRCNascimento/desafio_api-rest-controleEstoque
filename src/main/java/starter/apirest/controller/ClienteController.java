@@ -13,11 +13,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import starter.apirest.model.Cliente;
+import starter.apirest.model.Estoque;
 import starter.apirest.repository.ClienteRepository;
+import starter.apirest.repository.EstoqueRepository;
+import starter.apirest.security.config.JwtTokenUtil;
+import starter.apirest.security.dao.UserDao;
+import starter.apirest.security.model.DAOUser;
 
 @RestController
 @RequestMapping ("/cliente")
@@ -25,14 +31,50 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteRepository cr;
+
+	@Autowired
+	private EstoqueRepository er;	
+	
+	@Autowired
+	private JwtTokenUtil jwtTokenUtil;
+	
+	@Autowired
+	private UserDao userDAO;
+	
+//	@Autowired
+//	private JwtRequestFilter jwtRequestFilter;
 	
 	@GetMapping
 	public List<Cliente> listar() {
 		return cr.findAll();
 	}
+	@GetMapping("/user")
+	public List<Cliente> listarPorUsuarioLogado(@Valid @RequestHeader("Authorization") String requestTokenHeader){
+		String jwtToken = requestTokenHeader.substring(7);
+		jwtTokenUtil.getUsernameFromToken(jwtToken);
+		return cr.findByUsuarioId_Username(jwtTokenUtil.getUsernameFromToken(jwtToken));
+	}
+	
+	@GetMapping("/produto")
+	public List<Estoque> listarProdutosEmEstoque() {
+		return er.findByValorVendaGreaterThanAndQuantidadeEstoqueGreaterThan(0,0);
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	@PostMapping
-	public ResponseEntity<Cliente> salvarCliente(@Valid @RequestBody Cliente cliente){
+	public ResponseEntity<Cliente> salvarCliente(@Valid @RequestBody Cliente cliente, @RequestHeader("Authorization") String requestTokenHeader) {
+		//Obter o usuário para gravar na Entidade Cliente
+		String jwtToken = requestTokenHeader.substring(7);
+		jwtTokenUtil.getUsernameFromToken(jwtToken);
+		DAOUser username= userDAO.findByUsername(jwtTokenUtil.getUsernameFromToken(jwtToken));
+		cliente.setUsuario(username);
+
 		cr.save(cliente);
 		return ResponseEntity.ok(cliente);
 	}

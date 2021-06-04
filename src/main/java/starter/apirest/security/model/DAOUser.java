@@ -23,7 +23,6 @@ public class DAOUser {
 	@Column
 	@JsonIgnore
 	private String password;
-
 	
 	public long getId() {
 		return id;

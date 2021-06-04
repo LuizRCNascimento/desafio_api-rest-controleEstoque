@@ -1,6 +1,5 @@
 package starter.apirest.model;
 
-import java.time.Instant;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,7 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
 
 import starter.apirest.security.model.DAOUser;
 
@@ -36,12 +34,13 @@ public class PedidoCompra {
     @Enumerated(EnumType.STRING)
 	private Status status;
     
-    @CreatedDate
-    private Instant createdDate;
+//    @CreatedDate
+//    private Instant createdDate;
 	
 	//Constructor
 	public PedidoCompra() {
 		this.setStatus(Status.Aberto);
+		
 	}
 
 	public PedidoCompra(Fornecedor fornecedor, DAOUser daoUser, List<Compra> compra) {
@@ -53,13 +52,23 @@ public class PedidoCompra {
 	}
 
 	//Getters and Setters
+	
 	public long getId() {
 		return id;
 	}
-
+	
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	public DAOUser getDaoUser() {
+		return daoUser;
+	}
+	
+	public void setDaoUser(DAOUser daoUser) {
+		this.daoUser = daoUser;
+	}
+	
 
 	public Fornecedor getFornecedor() {
 		return fornecedor;

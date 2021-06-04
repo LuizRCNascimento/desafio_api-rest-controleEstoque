@@ -62,9 +62,9 @@ public class Compra {
 //		return pedidoCompra;
 //	}
 
-//	public void setPedidoCompra(PedidoCompra pedidoCompra) {
-//		this.pedidoCompra = pedidoCompra;
-//	}
+	public void setPedidoCompra(PedidoCompra pedidoCompra) {
+		this.pedidoCompra = pedidoCompra;
+	}
 
 	public long getQuantidadeCompra() {
 		return quantidadeCompra;

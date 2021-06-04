@@ -66,25 +66,6 @@ public class Estoque {
 		return produto;
 	}
 	
-//	public void setProduto(Produto produto) {
-//		this.produto = produto;
-//	}
-	
-//	public Compra getCompra() {
-//		return compra;
-//	}
-//	
-//	public void setCompra(Compra compra) {
-//		this.compra = compra;
-//	}
-//	
-//	public Venda getVenda() {
-//		return venda;
-//	}
-//	
-//	public void setVenda(Venda venda) {
-//		this.venda = venda;
-//	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
