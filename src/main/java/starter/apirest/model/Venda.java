@@ -37,7 +37,6 @@ public class Venda {
 		this.quantidadeVenda = quantidadeVenda;
 		this.valorVenda = valorVenda;
 		this.estoque = estoque;
-		System.out.println("Passou pela Venda - construtor field");
 
 	}
 
