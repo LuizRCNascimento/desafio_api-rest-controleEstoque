@@ -14,6 +14,7 @@ public class ApiRestControleDeEstoqueApplication {
 		
 		Locale defaultLocale = Locale.getDefault();
 		System.out.println("Default Locale: "+defaultLocale);
-	}
 
+	}
 }
+
